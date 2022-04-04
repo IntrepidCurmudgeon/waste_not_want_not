@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="edu.fsu.cs.wastenotwantnot.LoginFragment"
+    android:id="@+id/fragmentLogin">
+
+    <!-- Add login form widgets -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <TextView
+            android:text="Username"
+            android:layout_width="wrap_content"
+            android:layout_weight=".50"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:textSize="15dp"/>
+
+        <EditText
+            android:id="@+id/txtUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minHeight="48dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <TextView
+            android:text="Password"
+            android:layout_width="wrap_content"
+            android:layout_weight=".50"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:textSize="15dp"/>
+
+        <EditText
+            android:id="@+id/txtPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minHeight="48dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minHeight="48dp"
+            android:onClick="myEventHandler"
+            android:text="Login"
+            android:textSize="15dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnSignup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minHeight="48dp"
+            android:onClick="myEventHandler"
+            android:text="Sign up"
+            android:textSize="15dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <TextView
+            android:text="Forgot Username/Password?"
+            android:layout_width="wrap_content"
+            android:layout_weight=".50"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:textSize="15dp"/>
+
+        <TextView
+            android:id="@+id/txtForgotLoginLink"
+            android:gravity="center"
+            android:textColor="#3F51B5"
+            android:text="@string/forgotLogin_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minHeight="48dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </LinearLayout>
+</TableLayout>
