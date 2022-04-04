@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         
         // This is a test to make a pull request, by Alex Kanotz
+        //testing master commit doug
          LoginFragment fragment = new LoginFragment();
         String tag = LoginFragment.class.getCanonicalName();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentLogin, fragment, tag).commit();
