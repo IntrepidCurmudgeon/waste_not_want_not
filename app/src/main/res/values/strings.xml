@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">Waste Not Want Not</string>
     <string name="forgotLogin_link"><u>Click Here!</u></string>
+    
+    <string name="register">Register</string>
+    <string name="firstName">First Name:</string>
+    <string name="lastName">Last Name:</string>
+    <string name="emailAddress">Email Address:</string>
+    <string name="address">Address:</string>
+    <string name="username">Username:</string>
+    <string name="password">Password:</string>
+    <string name="confirmPassword">Confirm Password:</string>
+    <string name="apply">Apply</string>
+    <string name="reset">Reset</string>
 </resources>
