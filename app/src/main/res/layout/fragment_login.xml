@@ -6,7 +6,11 @@
     tools:context="edu.fsu.cs.wastenotwantnot.LoginFragment"
     android:id="@+id/fragmentLogin">
 
+    <!-- TODO: additional formatting (LBW) -->
+
     <!-- Add login form widgets -->
+
+    <!-- username -->
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -31,6 +35,8 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
     </LinearLayout>
+
+    <!-- password -->
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -55,6 +61,8 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
     </LinearLayout>
+
+    <!-- login button -->
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -72,6 +80,8 @@
             android:text="Login"
             android:textSize="15dp" />
     </LinearLayout>
+
+    <!-- register button -->
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -79,16 +89,19 @@
         android:layout_weight="1"
         android:gravity="center">
 
+        <!-- TODO: not sure about this android:onClick property (LBW) -->
+        <!-- "Use databinding or explicit wiring of click listener in code" -->
         <Button
             android:id="@+id/btnSignup"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:minHeight="48dp"
-            android:onClick="myEventHandler"
-            android:text="Sign up"
-            android:textSize="15dp" />
+            android:text="@string/register"
+            android:textSize="15sp" />
     </LinearLayout>
+
+    <!-- forgot -->
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"

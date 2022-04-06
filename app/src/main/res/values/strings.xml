@@ -12,4 +12,5 @@
     <string name="confirmPassword">Confirm Password:</string>
     <string name="apply">Apply</string>
     <string name="reset">Reset</string>
+    <string name="signup">Register</string>
 </resources>

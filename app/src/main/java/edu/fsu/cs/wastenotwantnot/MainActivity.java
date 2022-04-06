@@ -5,16 +5,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
-//test
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
-        // This is a test to make a pull request, by Alex Kanotz
-        //testing master commit doug
-         LoginFragment fragment = new LoginFragment();
+
+        LoginFragment fragment = new LoginFragment();
         String tag = LoginFragment.class.getCanonicalName();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentLogin, fragment, tag).commit();
+    }
+
+    @Override
+    public void onStartRegister() {
+        RegisterFragment registerFragment = new RegisterFragment();
+        String registerFragmentTag = RegisterFragment.class.getCanonicalName();
+        getSupportFragmentManager().beginTransaction().replace(
+                R.id.fragmentContainerView, registerFragment, registerFragmentTag).commit();
     }
 }
