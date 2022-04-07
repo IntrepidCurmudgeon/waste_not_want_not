@@ -13,6 +13,8 @@
     <string name="apply">Apply</string>
     <string name="reset">Reset</string>
     <string name="signup">Register</string>
+    <string name="login">Login</string>
+    <string name="forgotUserNamePassword">Forgot Username/Password?</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
