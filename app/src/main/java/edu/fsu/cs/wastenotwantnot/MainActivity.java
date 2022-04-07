@@ -4,7 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements LoginFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -13,7 +14,13 @@ public class MainActivity extends AppCompatActivity {
 
         LoginFragment fragment = new LoginFragment();
         String tag = LoginFragment.class.getCanonicalName();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentLogin, fragment, tag).commit();
+        getSupportFragmentManager().beginTransaction().replace(
+                R.id.frameLayoutFragment, fragment, tag).commit();
+    }
+
+    @Override
+    public void onStartLogin() {
+
     }
 
     @Override
@@ -21,6 +28,6 @@ public class MainActivity extends AppCompatActivity {
         RegisterFragment registerFragment = new RegisterFragment();
         String registerFragmentTag = RegisterFragment.class.getCanonicalName();
         getSupportFragmentManager().beginTransaction().replace(
-                R.id.fragmentContainerView, registerFragment, registerFragmentTag).commit();
+                R.id.frameLayoutFragment, registerFragment, registerFragmentTag).commit();
     }
 }

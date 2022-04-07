@@ -1,15 +1,17 @@
 package edu.fsu.cs.wastenotwantnot;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 
 public class LoginFragment extends Fragment {
 
-
+    private OnFragmentInteractionListener mListener;
 
     public static LoginFragment getInstance(String username){
         //Bundle bundle = new Bundle();
@@ -30,7 +32,35 @@ public class LoginFragment extends Fragment {
         // TODO: type of name needs to match "USERNAME" key in bundle.putString()
         //String name = getArguments().getInt("USERNAME");
         //username.setText(username);
+        Button registerButton = view.findViewById(R.id.btnSignup);
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.onStartRegister();
+            }
+        });
         return view;
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    public interface OnFragmentInteractionListener {
+        void onStartLogin();
+        void onStartRegister();
+    }
 }
