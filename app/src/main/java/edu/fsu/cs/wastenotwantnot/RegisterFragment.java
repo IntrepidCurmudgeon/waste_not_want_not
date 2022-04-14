@@ -66,15 +66,16 @@ public class RegisterFragment extends Fragment {
 
         EditText firstName = view.findViewById(R.id.firstNameInput);
         EditText lastName = view.findViewById(R.id.lastNameInput);
-        EditText emailAddress = view.findViewById(R.id.emailInput);
+        EditText emailAddress = view.findViewById(R.id.emailAddressInput);
         EditText address = view.findViewById(R.id.addressInput);
         EditText username = view.findViewById(R.id.usernameInput);
         EditText password = view.findViewById(R.id.passwordInput);
         EditText confirmPassword = view.findViewById(R.id.confirmPasswordInput);
 
-        Button applyButton = view.findViewById(R.id.applyBtn);
-        Button resetButton = view.findViewById(R.id.resetBtn);
+        Button applyButton = view.findViewById(R.id.applyButton);
+        Button resetButton = view.findViewById(R.id.resetButton);
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
         // applyButton on click listener
         applyButton.setOnClickListener(v -> {
             // Validate data has been entered
@@ -94,6 +95,7 @@ public class RegisterFragment extends Fragment {
                 Toast.makeText(getActivity(), "Confirm password", Toast.LENGTH_SHORT).show();
             if (!emailAddress.getText().toString().matches(emailPattern))
                 Toast.makeText(getActivity(), "Email address is not a valid format", Toast.LENGTH_SHORT).show();
+
             // Validate passwords are the same
             String passwordStr = password.getText().toString();
             String confirmPasswordStr = confirmPassword.getText().toString();
