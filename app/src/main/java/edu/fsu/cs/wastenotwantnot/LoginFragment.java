@@ -6,8 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+
+import org.w3c.dom.Text;
 
 public class LoginFragment extends Fragment {
 
@@ -26,9 +30,13 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_login, parent, false);
-        //login = view.findViewById(R.id.login);
-        //username = view.findViewById(R.id.user);
-        // password = view.findViewById(R.id.password);
+        Button loginButton = view.findViewById(R.id.btnLogin);
+        EditText userNameText = view.findViewById(R.id.txtUsername);
+        EditText passwordText = view.findViewById(R.id.txtPassword);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { mListener.onStartLogin(userNameText.getText().toString(), passwordText.getText().toString()); }
+        });
         // TODO: type of name needs to match "USERNAME" key in bundle.putString()
         //String name = getArguments().getInt("USERNAME");
         //username.setText(username);
@@ -60,7 +68,7 @@ public class LoginFragment extends Fragment {
     }
 
     public interface OnFragmentInteractionListener {
-        void onStartLogin();
+        void onStartLogin(String userName, String password);
         void onStartRegister();
     }
 }

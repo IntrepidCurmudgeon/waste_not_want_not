@@ -12,9 +12,15 @@ import java.util.List;
 @Dao
 public interface UserDao {
     // TODO: confirm conflict strategy
-    // TODO: uncomment User.class
     @Insert(onConflict = OnConflictStrategy.ABORT)
     void insert(User user);
 
+    @Query("DELETE FROM user")
+    void deleteAll();
+
     // TODO: Query
+    // e.g. lookup user for login
+
+    @Query("SELECT password FROM user WHERE user_name= :userName")
+    public String getPassword(String userName);
 }

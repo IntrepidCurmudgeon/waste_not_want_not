@@ -3,9 +3,12 @@ package edu.fsu.cs.wastenotwantnot;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements LoginFragment.OnFragmentInteractionListener {
+
+    private UserRepository mUserRepo = new UserRepository(getApplication());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +22,15 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onStartLogin() {
-
+    public void onStartLogin(String userName, String password) {
+        String correctPassword = mUserRepo.getPassword(userName);
+        String toastText = "Passwords don't match";
+        if (correctPassword.equals(password)) {
+            toastText = "Passwords match!";
+        }
+        Toast.makeText(getApplicationContext(),
+                toastText,
+                Toast.LENGTH_LONG).show();
     }
 
     @Override

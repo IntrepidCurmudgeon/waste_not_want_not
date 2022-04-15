@@ -26,4 +26,8 @@ public class UserRepository {
             mUserDao.insert(user);
         });
     }
+
+    String getPassword(String userName) {
+        return mUserDao.getPassword(userName);
+    }
 }
