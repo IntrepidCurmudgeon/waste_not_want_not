@@ -6,12 +6,9 @@ import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "user")
-// TODO: uncomment following to ensure unique user name and email address
-
-/*        ,
+@Entity(tableName = "user",
         indices = {@Index(value = {"user_name"},unique = true),
-                @Index(value = {"email"},unique = true)})*/
+                @Index(value = {"email"},unique = true)})
 public class User {
     @PrimaryKey(autoGenerate = true)
     @NonNull
@@ -27,7 +24,7 @@ public class User {
     }
 
     // TODO: uncomment this block and create setters and getters
-/*    @NonNull
+    @NonNull
     @ColumnInfo(name = "user_name")
     private String userName;
 
@@ -38,11 +35,68 @@ public class User {
     private String lastName;
 
     @ColumnInfo(name = "email")
-    private String emailAddress;*/
+    private String emailAddress;
 
     // TODO: physical address
+    @ColumnInfo(name = "address")
+    private String address;
 
     // TODO: password (encryption, best practices, etc)
+    // can't just have password in plaintext in local database with a public setter/getter
+    //
+    @ColumnInfo(name = "password")
+    private String password;
 
-    // TODO: getters / setters
+    // TODO: getters
+    public String getUserName () {
+        return this.userName;
+    }
+
+    public String getFirstName () {
+        return this.firstName;
+    }
+
+    public String getLastName () {
+        return this.lastName;
+    }
+
+    public String getEmailAddress () {
+        return this.emailAddress;
+    }
+
+    public String getAddress () {
+        return this.address;
+    }
+
+    // TODO: don't do this!
+    public String getPassword () {
+        return this.password;
+    }
+
+    // TODO: setters
+
+    public void setUserName (String name) {
+        this.userName = userName;
+    }
+
+    public void setFirstName (String name) {
+        this.firstName = name;
+    }
+
+    public void setLastName (String name) {
+        this.lastName = name;
+    }
+
+    public void setEmailAddress (String email) {
+        this.emailAddress = email;
+    }
+
+    public void setAddress (String address) {
+        this.address = address;
+    }
+
+    // TODO: don't do this!
+    public void setPassword (String password) {
+        this.password = password;
+    }
 }
