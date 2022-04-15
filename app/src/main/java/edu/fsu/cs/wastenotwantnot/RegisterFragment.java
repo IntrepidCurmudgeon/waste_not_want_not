@@ -66,14 +66,14 @@ public class RegisterFragment extends Fragment {
 
         EditText firstName = view.findViewById(R.id.firstNameInput);
         EditText lastName = view.findViewById(R.id.lastNameInput);
-        EditText emailAddress = view.findViewById(R.id.emailAddressInput);
+        EditText emailAddress = view.findViewById(R.id.emailInput);
         EditText address = view.findViewById(R.id.addressInput);
         EditText username = view.findViewById(R.id.usernameInput);
         EditText password = view.findViewById(R.id.passwordInput);
         EditText confirmPassword = view.findViewById(R.id.confirmPasswordInput);
 
-        Button applyButton = view.findViewById(R.id.applyButton);
-        Button resetButton = view.findViewById(R.id.resetButton);
+        Button applyButton = view.findViewById(R.id.applyBtn);
+        Button resetButton = view.findViewById(R.id.resetBtn);
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
         // applyButton on click listener
