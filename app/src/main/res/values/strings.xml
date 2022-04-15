@@ -2,7 +2,7 @@
     <string name="app_name">Waste Not Want Not</string>
     <string name="forgotLogin_link"><u>Click Here!</u></string>
 
-    <string name="register">Register</string>
+    <string name="register">Donor Registration</string>
     <string name="firstName">First Name:</string>
     <string name="lastName">Last Name:</string>
     <string name="emailAddress">Email Address:</string>

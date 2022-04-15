@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!-- Header -->
         <TextView
             android:id="@+id/registrationText"
             android:layout_width="wrap_content"
@@ -20,6 +21,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- First Name -->
         <TextView
             android:id="@+id/firstNameText"
             android:layout_width="wrap_content"
@@ -46,6 +48,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="LabelFor,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
+        <!-- Last Name -->
         <TextView
             android:id="@+id/lastNameText"
             android:layout_width="wrap_content"
@@ -72,6 +75,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="LabelFor,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
+        <!-- Email -->
         <TextView
             android:id="@+id/emailText"
             android:layout_width="wrap_content"
@@ -98,6 +102,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="LabelFor,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
+        <!-- Address -->
         <TextView
             android:id="@+id/addressText"
             android:layout_width="wrap_content"
@@ -124,6 +129,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="LabelFor,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
+        <!-- User name -->
         <TextView
             android:id="@+id/usernameText"
             android:layout_width="wrap_content"
@@ -150,6 +156,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="LabelFor,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
+        <!-- Password -->
         <TextView
             android:id="@+id/passwordText"
             android:layout_width="wrap_content"
@@ -202,6 +209,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="LabelFor,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
+        <!-- Apply -->
         <Button
             android:id="@+id/applyBtn"
             android:layout_width="wrap_content"
@@ -213,6 +221,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- Reset -->
         <Button
             android:id="@+id/resetBtn"
             android:layout_width="wrap_content"
