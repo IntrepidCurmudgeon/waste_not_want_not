@@ -9,6 +9,8 @@ import androidx.room.Query;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.core.Single;
+
 @Dao
 public interface UserDao {
     // TODO: confirm conflict strategy
@@ -21,6 +23,6 @@ public interface UserDao {
     // TODO: Query
     // e.g. lookup user for login
 
-    @Query("SELECT password FROM user WHERE user_name= :userName")
-    public String getPassword(String userName);
+    @Query("SELECT * FROM user WHERE user_name = :userName")
+    public User loadUserByUserName(String userName);
 }

@@ -2,10 +2,12 @@ package edu.fsu.cs.wastenotwantnot;
 
 import android.app.Application;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 public class UserRepository {
     private UserDao mUserDao;
     // TODO: livedata (for updating data as it changes)
-    // e.g. private LiveData<List<Word>> mAllWords;
+    // e.g. private LiveData<List<Listing>> mAllListing;
 
     UserRepository(Application application) {
         UserRoomDatabase db = UserRoomDatabase.getDatabase(application);
@@ -15,8 +17,8 @@ public class UserRepository {
 
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.
-/*    LiveData<List<Word>> getAllWords() {
-        return mAllWords;
+/*    LiveData<List<Listing>> getAllListings() {
+        return mAllListings;
     }*/
 
     // You must call this on a non-UI thread or your app will throw an exception. Room ensures
@@ -27,7 +29,9 @@ public class UserRepository {
         });
     }
 
-    String getPassword(String userName) {
-        return mUserDao.getPassword(userName);
+    public User loadUserByUserName(String userName) {
+        UserRoomDatabase.databaseWriteExecutor.execute(() -> {
+
+        });
     }
 }
