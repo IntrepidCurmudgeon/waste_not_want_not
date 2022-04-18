@@ -19,25 +19,36 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mWasteNotViewModel = new ViewModelProvider(this).get(WasteNotViewModel.class);
 
         LoginFragment fragment = new LoginFragment();
         String tag = LoginFragment.class.getCanonicalName();
         getSupportFragmentManager().beginTransaction().replace(
                 R.id.frameLayoutFragment, fragment, tag).commit();
 
-        mWasteNotViewModel = new ViewModelProvider(this).get(WasteNotViewModel.class);
+
     }
 
     @Override
     public void onStartLogin(String userName, String password) {
-        User user = mWasteNotViewModel.loadUserByUserName(userName);
-        String toastText = "Passwords don't match";
-        if (user.getPassword().equals(password)) {
-            toastText = "Passwords match!";
-        }
-        Toast.makeText(getApplicationContext(),
-                toastText,
-                Toast.LENGTH_LONG).show();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                User user = mWasteNotViewModel.loadUserByUserName(userName, password);
+                if (user == null) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(), "Invalid Credentials", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }).start();
     }
 
     @Override

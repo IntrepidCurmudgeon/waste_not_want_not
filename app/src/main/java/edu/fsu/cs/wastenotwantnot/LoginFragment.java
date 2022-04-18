@@ -2,6 +2,7 @@ package edu.fsu.cs.wastenotwantnot;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,12 @@ public class LoginFragment extends Fragment {
         EditText passwordText = view.findViewById(R.id.txtPassword);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { mListener.onStartLogin(userNameText.getText().toString(), passwordText.getText().toString()); }
+            public void onClick(View view) {
+                String userName = userNameText.getText().toString().trim();
+                String pwd = passwordText.getText().toString().trim();
+                Log.d("LOGIN FRAGMENT", "userName: " + userName + " pwd: " + pwd);
+                mListener.onStartLogin(userName, pwd);
+            }
         });
         // TODO: type of name needs to match "USERNAME" key in bundle.putString()
         //String name = getArguments().getInt("USERNAME");

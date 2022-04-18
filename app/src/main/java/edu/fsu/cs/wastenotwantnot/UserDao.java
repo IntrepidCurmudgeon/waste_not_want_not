@@ -23,6 +23,6 @@ public interface UserDao {
     // TODO: Query
     // e.g. lookup user for login
 
-    @Query("SELECT * FROM user WHERE user_name = :userName")
-    public User loadUserByUserName(String userName);
+    @Query("SELECT * FROM user WHERE user_name=(:userName) AND password=(:pwd)")
+    User loadUserByUserName(String userName, String pwd);
 }

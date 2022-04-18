@@ -2,6 +2,8 @@ package edu.fsu.cs.wastenotwantnot;
 
 import android.app.Application;
 
+import androidx.lifecycle.LiveData;
+
 import java.util.concurrent.atomic.AtomicReference;
 
 public class UserRepository {
@@ -29,9 +31,7 @@ public class UserRepository {
         });
     }
 
-    public User loadUserByUserName(String userName) {
-        UserRoomDatabase.databaseWriteExecutor.execute(() -> {
-
-        });
+    public User loadUserByUserName(String userName, String password) {
+        return mUserDao.loadUserByUserName(userName, password);
     }
 }
