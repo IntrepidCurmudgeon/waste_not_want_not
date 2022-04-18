@@ -1,6 +1,7 @@
 package edu.fsu.cs.wastenotwantnot;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -12,6 +13,7 @@ public class UserRepository {
     // e.g. private LiveData<List<Listing>> mAllListing;
 
     UserRepository(Application application) {
+        Log.d("UserRepository", " is alive");
         UserRoomDatabase db = UserRoomDatabase.getDatabase(application);
         mUserDao = db.userDao();
 //        mAllWords = mWordDao.getAlphabetizedWords();
@@ -32,6 +34,7 @@ public class UserRepository {
     }
 
     public User loadUserByUserName(String userName, String password) {
+        Log.d("UserRepository", userName + " " + password);
         return mUserDao.loadUserByUserName(userName, password);
     }
 }

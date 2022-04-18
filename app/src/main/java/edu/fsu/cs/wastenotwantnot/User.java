@@ -76,7 +76,7 @@ public class User {
     // TODO: setters
 
     public void setUserName (String name) {
-        this.userName = userName;
+        this.userName = name;
     }
 
     public void setFirstName (String name) {

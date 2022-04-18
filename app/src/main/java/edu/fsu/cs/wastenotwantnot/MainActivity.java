@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import io.reactivex.rxjava3.core.Single;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onStartLogin(String userName, String password) {
+        Log.d("MainActivity", "userName: " + userName + " password: " + password);
         new Thread(new Runnable() {
             @Override
             public void run() {

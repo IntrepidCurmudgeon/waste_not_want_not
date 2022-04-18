@@ -1,6 +1,7 @@
 package edu.fsu.cs.wastenotwantnot;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -55,7 +56,9 @@ public abstract class UserRoomDatabase extends RoomDatabase {
                 blake.setAddress("562 CR 1148");
                 blake.setUserName("IpswichTriptych");
                 blake.setPassword("COP4656");
+                Log.d("UserRoomDatabase", blake.getUserName() + " " + blake.getPassword());
                 dao.insert(blake);
+                Log.d("UserRoomDatabase", "inserted user");
             });
         }
     };
