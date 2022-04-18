@@ -47,7 +47,11 @@ public class MainActivity extends AppCompatActivity
                 }
                 else
                 {
-                    Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_SHORT).show();
+                    HomeFragment homeFragment = new HomeFragment();
+                    String homeFragmentTag = HomeFragment.class.getCanonicalName();
+                    getSupportFragmentManager().beginTransaction().replace(
+                            R.id.frameLayoutFragment, homeFragment, homeFragmentTag).commit();
                 }
             }
         }).start();
