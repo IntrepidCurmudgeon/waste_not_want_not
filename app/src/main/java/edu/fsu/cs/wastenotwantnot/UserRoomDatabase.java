@@ -13,10 +13,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 // TODO: set exportSchema to true, implement best practices
-@Database(entities = {User.class}, version = 1, exportSchema = false)
+@Database(entities = {User.class, /*Listing.class*/}, version = 1, exportSchema = false) // TODO
 public abstract class UserRoomDatabase extends RoomDatabase {
 
     public abstract UserDao userDao();
+    //public abstract ListingDao listingDao(); // TODO
 
     private static volatile UserRoomDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
@@ -48,9 +49,10 @@ public abstract class UserRoomDatabase extends RoomDatabase {
                 // Populate the database in the background.
                 // If you want to start with more words, just add them.
                 UserDao dao = INSTANCE.userDao();
-                dao.deleteAll();
 
-                User blake = new User();
+                //dao.deleteAll();
+
+/*                User blake = new User();
                 blake.setFirstName("Blake");
                 blake.setLastName("Wilson");
                 blake.setAddress("562 CR 1148");
@@ -58,7 +60,7 @@ public abstract class UserRoomDatabase extends RoomDatabase {
                 blake.setPassword("COP4656");
                 Log.d("UserRoomDatabase", blake.getUserName() + " " + blake.getPassword());
                 dao.insert(blake);
-                Log.d("UserRoomDatabase", "inserted user");
+                Log.d("UserRoomDatabase", "inserted user");*/
             });
         }
     };

@@ -7,7 +7,6 @@ import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-
 @Entity(tableName = "listing",
         foreignKeys = @ForeignKey(entity = User.class,
         parentColumns = "id",
@@ -27,7 +26,10 @@ public class Listing {
         return this.id;
     }
 
-    // TODO: uncomment this block and create setters and getters
+    @NonNull
+    @ColumnInfo(name = "user_id")
+    private int userId;
+
     @NonNull
     @ColumnInfo(name = "listing_description")
     private String listingDescription;
@@ -37,13 +39,6 @@ public class Listing {
 
     @ColumnInfo(name = "listing_title")
     private String listingTitle;
-
-    @ColumnInfo(name = "listing_latitude")
-    private String listingLatitude;
-
-    // TODO: physical address
-    @ColumnInfo(name = "listing_longitude")
-    private String listingLongitude;
 
     // TODO: password (encryption, best practices, etc)
     // can't just have password in plaintext in local database with a public setter/getter
@@ -62,15 +57,6 @@ public class Listing {
         return this.listingTitle;
     }
 
-    public String getListingLatitude () {
-        return this.listingLatitude;
-    }
-
-    public String getListingLongitude () {
-        return this.listingLongitude;
-    }
-
-
     // TODO: setters
 
     public void setListingDescription (String listingDescription) {
@@ -84,15 +70,6 @@ public class Listing {
     public void setListingTitle (String listingTitle) {
         this.listingTitle = listingTitle;
     }
-
-    public void setListingLatitude (String listingLatitude) {
-        this.listingLatitude = listingLatitude;
-    }
-
-    public void setListingLongitude (String listingLongitude) {
-        this.listingLongitude = listingLongitude;
-    }
-
 }
 
 
