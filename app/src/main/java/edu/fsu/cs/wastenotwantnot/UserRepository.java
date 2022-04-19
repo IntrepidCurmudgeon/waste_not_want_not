@@ -9,6 +9,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class UserRepository {
     private UserDao mUserDao;
+    //private ListingDao mListingDao; // TODO
     // TODO: livedata (for updating data as it changes)
     // e.g. private LiveData<List<Listing>> mAllListing;
 
@@ -16,7 +17,7 @@ public class UserRepository {
         Log.d("UserRepository", " is alive");
         UserRoomDatabase db = UserRoomDatabase.getDatabase(application);
         mUserDao = db.userDao();
-//        mAllWords = mWordDao.getAlphabetizedWords();
+        //mListingDao = db.listingDao(); // TODO
     }
 
     // Room executes all queries on a separate thread.
@@ -32,6 +33,15 @@ public class UserRepository {
             mUserDao.insert(user);
         });
     }
+
+    /*
+    // TODO
+    void insert(Listing listing) {
+        UserRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mListingDao.insert(listing);
+        });
+    }
+    */
 
     public User loadUserByUserName(String userName, String password) {
         Log.d("UserRepository", userName + " " + password);
