@@ -37,4 +37,8 @@ public class UserRepository {
         Log.d("UserRepository", userName + " " + password);
         return mUserDao.loadUserByUserName(userName, password);
     }
+
+    public User loadUserByEmailOrUserName(String email, String userName) {
+        return mUserDao.loadUserByEmailOrUserName(email, userName);
+    }
 }
