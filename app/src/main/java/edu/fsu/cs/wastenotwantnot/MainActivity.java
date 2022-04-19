@@ -11,7 +11,8 @@ import android.widget.Toast;
 import io.reactivex.rxjava3.core.Single;
 
 public class MainActivity extends AppCompatActivity
-        implements LoginFragment.OnFragmentInteractionListener {
+        implements LoginFragment.OnFragmentInteractionListener,
+        HomeFragment.OnHomeFragmentInteractionListener {
 
     public static final String EXTRA_REPLY = "com.example.android.wordlistsql.REPLY";
     private WasteNotViewModel mWasteNotViewModel;
@@ -22,12 +23,10 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         mWasteNotViewModel = new ViewModelProvider(this).get(WasteNotViewModel.class);
 
-        LoginFragment fragment = new LoginFragment();
-        String tag = LoginFragment.class.getCanonicalName();
+        HomeFragment fragment = new HomeFragment();
+        String tag = HomeFragment.class.getCanonicalName();
         getSupportFragmentManager().beginTransaction().replace(
                 R.id.frameLayoutFragment, fragment, tag).commit();
-
-
     }
 
     @Override
@@ -63,5 +62,13 @@ public class MainActivity extends AppCompatActivity
         String registerFragmentTag = RegisterFragment.class.getCanonicalName();
         getSupportFragmentManager().beginTransaction().replace(
                 R.id.frameLayoutFragment, registerFragment, registerFragmentTag).commit();
+    }
+
+    @Override
+    public void onStartSignIn() {
+        LoginFragment fragment = new LoginFragment();
+        String tag = LoginFragment.class.getCanonicalName();
+        getSupportFragmentManager().beginTransaction().replace(
+                R.id.frameLayoutFragment, fragment, tag).commit();
     }
 }

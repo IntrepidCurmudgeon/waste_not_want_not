@@ -14,7 +14,7 @@
 
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/buttonSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="48dp"
@@ -31,27 +31,29 @@
             android:text="@string/findNearMe"
             android:textAlignment="center"
             android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/button"
-            app:layout_constraintEnd_toEndOf="@+id/button"
-            app:layout_constraintStart_toStartOf="@+id/button" />
+            app:layout_constraintBottom_toTopOf="@+id/buttonSearch"
+            app:layout_constraintEnd_toEndOf="@+id/buttonSearch"
+            app:layout_constraintStart_toStartOf="@+id/buttonSearch" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
             android:text="@string/haveFood"
-            app:layout_constraintEnd_toEndOf="@+id/button2"
-            app:layout_constraintStart_toStartOf="@+id/button2"
-            tools:layout_editor_absoluteY="592dp" />
+            app:layout_constraintBottom_toTopOf="@+id/buttonStart"
+            app:layout_constraintEnd_toEndOf="@+id/buttonStart"
+            app:layout_constraintStart_toStartOf="@+id/buttonStart" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/buttonStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="48dp"
             android:text="@string/postListing"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:layout_editor_absoluteX="161dp" />
+            app:layout_constraintEnd_toEndOf="@+id/buttonSearch"
+            app:layout_constraintStart_toStartOf="@+id/buttonSearch" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
