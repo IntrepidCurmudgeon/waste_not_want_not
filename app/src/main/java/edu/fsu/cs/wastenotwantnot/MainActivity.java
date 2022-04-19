@@ -46,11 +46,11 @@ public class MainActivity extends AppCompatActivity
                 }
                 else
                 {
-                    //Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_SHORT).show();
-                    HomeFragment homeFragment = new HomeFragment();
-                    String homeFragmentTag = HomeFragment.class.getCanonicalName();
+                    // Go to CreateListing
+                    CreateListing fragment = new CreateListing();
+                    String tag = CreateListing.class.getCanonicalName();
                     getSupportFragmentManager().beginTransaction().replace(
-                            R.id.frameLayoutFragment, homeFragment, homeFragmentTag).commit();
+                            R.id.frameLayoutFragment, fragment, tag).commit();
                 }
             }
         }).start();
