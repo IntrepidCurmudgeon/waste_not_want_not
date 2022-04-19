@@ -1,8 +1,12 @@
 package edu.fsu.cs.wastenotwantnot;
 
+import android.app.Application;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.room.Room;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -102,11 +106,30 @@ public class RegisterFragment extends Fragment {
             if (!passwordStr.equals(confirmPasswordStr))
                 Toast.makeText(getActivity(), "Passwords are not the same", Toast.LENGTH_SHORT).show();
 
-            // TODO: validate user is not already in the database
+            else
+            {
+                // TODO: validate if user already exists in database
 
 
+                // Insert user information to the database
+                User newUser = new User();
+                newUser.setFirstName(firstName.getText().toString());
+                newUser.setLastName(lastName.getText().toString());
+                newUser.setEmailAddress(emailAddress.getText().toString());
+                newUser.setAddress(address.getText().toString());
+                newUser.setUserName(username.getText().toString());
+                newUser.setPassword(password.getText().toString());
 
-            // TODO: insert user information to the database
+                Application application = new Application();
+                UserRepository userRepository = new UserRepository(application);
+                userRepository.insert(newUser);
+
+                // Go back to LoginFragment
+                LoginFragment fragment = new LoginFragment();
+                String tag = LoginFragment.class.getCanonicalName();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(
+                        R.id.frameLayoutFragment, fragment, tag).commit();
+            }
         });
 
         // resetButton on click listener
