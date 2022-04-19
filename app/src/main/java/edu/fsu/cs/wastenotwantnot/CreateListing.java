@@ -25,8 +25,6 @@ public class CreateListing extends Fragment {
 
         EditText title = view.findViewById(R.id.listingTitleInput);
         EditText address = view.findViewById(R.id.listingAddressInput);
-        EditText latitude = view.findViewById(R.id.listingLatitudeInput);
-        EditText longitude = view.findViewById(R.id.listingLongitudeInput);
         EditText description = view.findViewById(R.id.listingDescriptionInput);
 
 
@@ -40,10 +38,6 @@ public class CreateListing extends Fragment {
                 Toast.makeText(getActivity(), "Title is not entered", Toast.LENGTH_SHORT).show();
             if (address.getText().toString().equals(""))
                 Toast.makeText(getActivity(), "Address is not entered", Toast.LENGTH_SHORT).show();
-            if (latitude.getText().toString().equals(""))
-                Toast.makeText(getActivity(), "Latitude is not entered", Toast.LENGTH_SHORT).show();
-            if (longitude.getText().toString().equals(""))
-                Toast.makeText(getActivity(), "Longitude is not entered", Toast.LENGTH_SHORT).show();
             if (description.getText().toString().equals(""))
                 Toast.makeText(getActivity(), "Description is not entered", Toast.LENGTH_SHORT).show();
             
@@ -59,8 +53,6 @@ public class CreateListing extends Fragment {
             // Clear EditTexts
             title.setText("");
             address.setText("");
-            latitude.setText("");
-            longitude.setText("");
             description.setText("");
         });
 
