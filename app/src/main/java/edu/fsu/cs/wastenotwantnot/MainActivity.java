@@ -3,6 +3,7 @@ package edu.fsu.cs.wastenotwantnot;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,7 +13,8 @@ import io.reactivex.rxjava3.core.Single;
 
 public class MainActivity extends AppCompatActivity
         implements LoginFragment.OnFragmentInteractionListener,
-        HomeFragment.OnHomeFragmentInteractionListener {
+        HomeFragment.OnHomeFragmentInteractionListener,
+        RegisterFragment.OnRegisterFragmentInteractionListener {
 
     public static final String EXTRA_REPLY = "com.example.android.wordlistsql.REPLY";
     private WasteNotViewModel mWasteNotViewModel;
@@ -70,5 +72,34 @@ public class MainActivity extends AppCompatActivity
         String tag = LoginFragment.class.getCanonicalName();
         getSupportFragmentManager().beginTransaction().replace(
                 R.id.frameLayoutFragment, fragment, tag).commit();
+    }
+
+    @Override
+    public void onRegistrationAttempt(User user) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                User userAttempt = mWasteNotViewModel.loadUserByEmailOrUserName(user.getEmailAddress(), user.getUserName());
+                if (userAttempt != null) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(), "User with that email or username already exists", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                else
+                {
+                    // Insert user information to the database
+                    mWasteNotViewModel.insert(user);
+
+                    // Go back to LoginFragment
+                    LoginFragment fragment = new LoginFragment();
+                    String tag = LoginFragment.class.getCanonicalName();
+                    getSupportFragmentManager().beginTransaction().replace(
+                            R.id.frameLayoutFragment, fragment, tag).commit();
+                }
+            }
+        }).start();
     }
 }

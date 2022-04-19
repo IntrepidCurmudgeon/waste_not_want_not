@@ -31,6 +31,8 @@ public class RegisterFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private OnRegisterFragmentInteractionListener mListener;
+
     public RegisterFragment() {
         // Required empty public constructor
     }
@@ -108,27 +110,14 @@ public class RegisterFragment extends Fragment {
 
             else
             {
-                // TODO: validate if user already exists in database
-
-
-                // Insert user information to the database
-                User newUser = new User();
-                newUser.setFirstName(firstName.getText().toString());
-                newUser.setLastName(lastName.getText().toString());
-                newUser.setEmailAddress(emailAddress.getText().toString());
-                newUser.setAddress(address.getText().toString());
-                newUser.setUserName(username.getText().toString());
-                newUser.setPassword(password.getText().toString());
-
-                Application application = new Application();
-                UserRepository userRepository = new UserRepository(application);
-                userRepository.insert(newUser);
-
-                // Go back to LoginFragment
-                LoginFragment fragment = new LoginFragment();
-                String tag = LoginFragment.class.getCanonicalName();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(
-                        R.id.frameLayoutFragment, fragment, tag).commit();
+                User user = new User();
+                user.setFirstName(firstName.getText().toString().trim());
+                user.setLastName(lastName.getText().toString().trim());
+                user.setEmailAddress(emailAddress.getText().toString().trim());
+                user.setAddress(address.getText().toString().trim());
+                user.setUserName(username.getText().toString().trim());
+                user.setPassword(password.getText().toString().trim());
+                mListener.onRegistrationAttempt(user);
             }
         });
 
@@ -145,5 +134,26 @@ public class RegisterFragment extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnRegisterFragmentInteractionListener) {
+            mListener = (OnRegisterFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnRegisterFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    public interface OnRegisterFragmentInteractionListener {
+        void onRegistrationAttempt(User user);
     }
 }
