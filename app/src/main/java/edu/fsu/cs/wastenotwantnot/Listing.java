@@ -26,7 +26,10 @@ public class Listing {
         return this.id;
     }
 
-    // TODO: uncomment this block and create setters and getters
+    @NonNull
+    @ColumnInfo(name = "user_id")
+    private int userId;
+
     @NonNull
     @ColumnInfo(name = "listing_description")
     private String listingDescription;

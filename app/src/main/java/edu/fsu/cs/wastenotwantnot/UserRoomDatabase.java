@@ -50,9 +50,9 @@ public abstract class UserRoomDatabase extends RoomDatabase {
                 // If you want to start with more words, just add them.
                 UserDao dao = INSTANCE.userDao();
 
-                dao.deleteAll();
+                //dao.deleteAll();
 
-                User blake = new User();
+/*                User blake = new User();
                 blake.setFirstName("Blake");
                 blake.setLastName("Wilson");
                 blake.setAddress("562 CR 1148");
@@ -60,7 +60,7 @@ public abstract class UserRoomDatabase extends RoomDatabase {
                 blake.setPassword("COP4656");
                 Log.d("UserRoomDatabase", blake.getUserName() + " " + blake.getPassword());
                 dao.insert(blake);
-                Log.d("UserRoomDatabase", "inserted user");
+                Log.d("UserRoomDatabase", "inserted user");*/
             });
         }
     };

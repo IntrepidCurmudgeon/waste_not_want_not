@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -48,6 +50,11 @@ public class MainActivity extends AppCompatActivity
                 }
                 else
                 {
+                    int userId = user.getId();
+                    SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putInt(getString(R.string.userId), userId);
+                    editor.apply();
                     // Go to CreateListing
                     CreateListing fragment = new CreateListing();
                     String tag = CreateListing.class.getCanonicalName();

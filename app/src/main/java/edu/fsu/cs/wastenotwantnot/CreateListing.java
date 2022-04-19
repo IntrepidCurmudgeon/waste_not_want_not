@@ -1,6 +1,8 @@
 package edu.fsu.cs.wastenotwantnot;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +24,10 @@ public class CreateListing extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_create_listing, container, false);
+
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        int userId = sharedPref.getInt(getString(R.string.userId), -1);
+        Toast.makeText(view.getContext(), "Hello user " + userId, Toast.LENGTH_LONG).show();
 
         EditText title = view.findViewById(R.id.listingTitleInput);
         EditText address = view.findViewById(R.id.listingAddressInput);
