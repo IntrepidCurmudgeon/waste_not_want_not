@@ -28,4 +28,8 @@ public class WasteNotViewModel extends AndroidViewModel {
         Log.d("WasteNotViewModel", "loadUserByUserName " + userName + " " + pwd);
         return mRepository.loadUserByUserName(userName, pwd);
     }
+
+    public User loadUserByEmailOrUserName (String email, String userName) {
+        return mRepository.loadUserByEmailOrUserName(email, userName);
+    }
 }
