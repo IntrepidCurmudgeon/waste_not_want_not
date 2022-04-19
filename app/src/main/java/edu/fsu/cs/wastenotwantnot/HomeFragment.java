@@ -69,7 +69,7 @@ public class HomeFragment extends Fragment {
         mButtonSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                mListener.onStartListingSearch();
             }
         });
         Button mButtonStart = view.findViewById(R.id.buttonStart);
@@ -100,5 +100,6 @@ public class HomeFragment extends Fragment {
 
     public interface OnHomeFragmentInteractionListener {
         void onStartSignIn();
+        void onStartListingSearch();
     }
 }
