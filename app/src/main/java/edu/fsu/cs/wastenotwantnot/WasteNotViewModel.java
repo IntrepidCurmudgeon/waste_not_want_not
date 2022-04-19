@@ -18,11 +18,12 @@ public class WasteNotViewModel extends AndroidViewModel {
     public WasteNotViewModel (Application application) {
         super(application);
         mRepository = new UserRepository(application);
-        //mAllListings = mRepository.getAllListings();
     }
 
     // LiveData<List<Listing>> getAllListings() { return mAllListings; }
     public void insert(User user) { mRepository.insert(user); }
+
+    //public void insert(Listing listing) { mRepository.insert(listing); } // TODO
 
     public User loadUserByUserName (String userName, String pwd) {
         Log.d("WasteNotViewModel", "loadUserByUserName " + userName + " " + pwd);
