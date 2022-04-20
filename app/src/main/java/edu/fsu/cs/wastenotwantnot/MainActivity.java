@@ -339,10 +339,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     public String getSearchDistance(){
-        if (isNullEmpty(searchDistance)){
-            return "15";
-        }else{
+        if (isValid(searchDistance)){
             return searchDistance;
+        }else{
+            return "25";
         }
     }
 
@@ -363,6 +363,20 @@ public class MainActivity extends AppCompatActivity
             return true;
         }
 
+        else if(str.matches("-?\\d+")){
+            return false;
+        }
+
+        else {
+            return false;
+        }
+    }
+    // method check if string is null or empty
+    public static boolean isValid(String str) {
+
+        if(str.matches("-?\\d+")){
+            return true;
+        }
         else {
             return false;
         }

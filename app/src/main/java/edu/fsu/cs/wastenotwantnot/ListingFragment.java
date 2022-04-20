@@ -31,6 +31,7 @@ public class ListingFragment extends Fragment {
     private LiveData<List<Listing>> mListings;
     double userLatitude;
     double userLongitude;
+    double metersInMiles = 1609.34;
     String searchDistance;
     private WasteNotViewModel mWasteNotViewModel;
     @Nullable
@@ -57,8 +58,10 @@ public class ListingFragment extends Fragment {
             for (int i=0; i<listings.size(); i++) {
                 String listingAddress = listings.get(i).getListingAddress();
                 LatLng listingLatLng = getLocationFromAddress(getContext(),listingAddress);
+
+                //distance is in meters
                 double distance = getDistanceBetweenPoints(usersLatLng,listingLatLng);
-                if(distance > Double.parseDouble(searchDistance)){
+                if((distance/metersInMiles) > Double.parseDouble(searchDistance)){
                     listings.remove(i);
                 }
             }
