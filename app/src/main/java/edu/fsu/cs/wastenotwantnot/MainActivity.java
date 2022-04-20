@@ -298,7 +298,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     public String getSearchDistance(){
-        return searchDistance;
+        if (searchDistance == ""){
+            return "15";
+        }else{
+            return searchDistance;
+        }
     }
 
     public void setSearchDistance(String sDistance){
