@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -39,6 +38,8 @@ public class MainActivity extends AppCompatActivity
     private WasteNotViewModel mWasteNotViewModel;
     FusedLocationProviderClient mFusedLocationClient;
     int PERMISSION_ID = 44;
+    public static double userLatitude;
+    public static double userLongitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,10 +134,10 @@ public class MainActivity extends AppCompatActivity
 
         getLastLocation();
 
-        //ListingFragment fragment = new ListingFragment();
-        //String tag = ListingFragment.class.getCanonicalName();
-        //getSupportFragmentManager().beginTransaction().replace(
-        //        R.id.frameLayoutFragment, fragment, tag).commit();
+        ListingFragment fragment = new ListingFragment();
+        String tag = ListingFragment.class.getCanonicalName();
+        getSupportFragmentManager().beginTransaction().replace(
+                R.id.frameLayoutFragment, fragment, tag).commit();
     }
 
     @SuppressLint("MissingPermission")
@@ -158,10 +159,9 @@ public class MainActivity extends AppCompatActivity
                         if (location == null) {
                             requestNewLocationData();
                         } else {
-
-                            double latitude = location.getLatitude();
-                            double longitude = location.getLongitude();
-                            //String test = "test";
+                            setUserLocation(location.getLatitude(),location.getLongitude());
+                            //double usersLatitude = location.getLatitude();
+                            //double longitude = location.getLongitude();
                             //latitudeTextView.setText(location.getLatitude() + "");
                             //longitTextView.setText(location.getLongitude() + "");
                         }
@@ -249,5 +249,16 @@ public class MainActivity extends AppCompatActivity
         if (checkPermissions()) {
             getLastLocation();
         }
+    }
+
+    public void setUserLocation(double latitude, double longitude){
+        userLatitude = latitude;
+        userLongitude = longitude;
+    }
+    public double getUsersLatitude(){
+        return userLatitude;
+    }
+    public double getUsersLongitude(){
+        return userLongitude;
     }
 }

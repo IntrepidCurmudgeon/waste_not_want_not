@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-class ListingFragment extends Fragment {
+public class ListingFragment extends Fragment {
 
     @Nullable
     @Override
