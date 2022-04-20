@@ -13,7 +13,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 // TODO: set exportSchema to true, implement best practices
-@Database(entities = {User.class, Listing.class}, version = 1, exportSchema = false) // TODO
+@Database(entities = {User.class, Listing.class}, version = 2, exportSchema = false) // TODO
 public abstract class UserRoomDatabase extends RoomDatabase {
 
     public abstract UserDao userDao();
@@ -32,6 +32,7 @@ public abstract class UserRoomDatabase extends RoomDatabase {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             UserRoomDatabase.class, "user_database")
                             .addCallback(sRoomDatabaseCallback)
+                            .fallbackToDestructiveMigration()
                             .build();
                 }
             }
