@@ -38,6 +38,12 @@ public class ListingFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        MainActivity mActivity = (MainActivity) getActivity();
+        mWasteNotViewModel = mActivity.getmWasteNotViewModel();
+        searchDistance = mActivity.getSearchDistance();
+        userLatitude = mActivity.getUsersLatitude();
+        userLongitude = mActivity.getUsersLongitude();
+        LatLng usersLatLng = new LatLng(userLatitude,userLongitude);
 
         View view = inflater.inflate(R.layout.fragment_listing, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
@@ -46,6 +52,17 @@ public class ListingFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         mWasteNotViewModel = new ViewModelProvider(this).get(WasteNotViewModel.class);
         mWasteNotViewModel.getListings().observe(getViewLifecycleOwner(), listings -> {
+
+            //filter listings results by selected distance
+            for (int i=0; i<listings.size(); i++) {
+                String listingAddress = listings.get(i).getListingAddress();
+                LatLng listingLatLng = getLocationFromAddress(getContext(),listingAddress);
+                double distance = getDistanceBetweenPoints(usersLatLng,listingLatLng);
+                if(distance > Double.parseDouble(searchDistance)){
+                    listings.remove(i);
+                }
+            }
+
             // update the cached copy of the listings in the adapter
             adapter.submitList(listings);
         });
@@ -55,29 +72,6 @@ public class ListingFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-/*        // TODO: filter listings results by selected distance
-        MainActivity mActivity = (MainActivity) getActivity();
-        mWasteNotViewModel = mActivity.getmWasteNotViewModel();
-
-
-
-        searchDistance = mActivity.getSearchDistance();
-
-        userLatitude = mActivity.getUsersLatitude();
-        userLongitude = mActivity.getUsersLongitude();
-        LatLng usersLatLng = new LatLng(userLatitude,userLongitude);
-        LiveData<List<Listing>> listingList = mWasteNotViewModel.getListings();
-
-        // TODO: loop thru list and determine if posting is within selected distance, if so add it to recycler view
-        String testAddress = "1600 Pennsylvania Ave NW, Washington, DC 20500";
-        LatLng listingLatLng = getLocationFromAddress(getContext(),testAddress);
-
-
-        double distance = getDistanceBetweenPoints(usersLatLng,listingLatLng);
-
-        // TODO: If distance is within range (searchDistance) show it, NOTE distance is returned in meters not miles
-        //int test = Integer.parseInt(searchDistance);*/
     }
 
     public LatLng getLocationFromAddress(Context context, String strAddress) {
