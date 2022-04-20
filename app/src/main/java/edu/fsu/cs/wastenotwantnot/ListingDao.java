@@ -11,7 +11,7 @@ import java.util.List;
 @Dao
 public interface ListingDao {
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Listing listing);
 
     @Query("DELETE FROM listing")

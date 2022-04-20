@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment;
 
 public class CreateListing extends Fragment {
 
+    private OnCreateListingFragmentInteractionListener mListener;
+
     public CreateListing() {
         // Required empty public constructor
     }
@@ -46,11 +48,21 @@ public class CreateListing extends Fragment {
                 Toast.makeText(getActivity(), "Address is not entered", Toast.LENGTH_SHORT).show();
             if (description.getText().toString().equals(""))
                 Toast.makeText(getActivity(), "Description is not entered", Toast.LENGTH_SHORT).show();
+
+            // get userId from shared preferences
+            if (userId == -1) {
+                Toast.makeText(getActivity(), "failed to get userId from SharedPreferences", Toast.LENGTH_LONG).show();
+            }
             
             else
             {
-                // TODO: insert data to Listing database
-                Toast.makeText(getActivity(), "Data successfully entered", Toast.LENGTH_SHORT).show();
+                Listing listing = new Listing();
+                listing.setListingTitle(title.getText().toString().trim());
+                listing.setListingAddress(address.getText().toString().trim());
+                listing.setListingDescription(description.getText().toString().trim());
+                listing.setUserId(userId);
+                mListener.onListingCreationAttempt(listing);
+//                Toast.makeText(getActivity(), "Data successfully entered", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -64,4 +76,26 @@ public class CreateListing extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof RegisterFragment.OnRegisterFragmentInteractionListener) {
+            mListener = (OnCreateListingFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnCreateListingFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    public interface OnCreateListingFragmentInteractionListener {
+        void onListingCreationAttempt(Listing newListing);
+    }
+
 }

@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -36,21 +38,36 @@ import io.reactivex.rxjava3.core.Single;
 public class MainActivity extends AppCompatActivity
         implements LoginFragment.OnFragmentInteractionListener,
         HomeFragment.OnHomeFragmentInteractionListener,
-        RegisterFragment.OnRegisterFragmentInteractionListener {
+        RegisterFragment.OnRegisterFragmentInteractionListener,
+        CreateListing.OnCreateListingFragmentInteractionListener {
 
     public static final String EXTRA_REPLY = "com.example.android.wordlistsql.REPLY";
-    public static WasteNotViewModel mWasteNotViewModel;
+    public static WasteNotViewModel mWasteNotViewModel; //TODO: confirm that this should be public
     FusedLocationProviderClient mFusedLocationClient;
     int PERMISSION_ID = 44;
     public static double userLatitude;
     public static double userLongitude;
     public static String searchDistance;
 
+    public static final int NEW_LISTING_ACTIVITY_REQUEST_CODE = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+/*        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        final ListingListAdapter adapter = new ListingListAdapter(new ListingListAdapter.ListingDiff());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mWasteNotViewModel = new ViewModelProvider(this).get(WasteNotViewModel.class);
+        mWasteNotViewModel.getListings().observe(this, listings -> {
+            // update the cached copy of the words in the adapter
+            adapter.submitList(listings);
+        });*/
+
+        mWasteNotViewModel = new ViewModelProvider(this).get(WasteNotViewModel.class);
+
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         HomeFragment fragment = new HomeFragment();
@@ -250,6 +267,12 @@ public class MainActivity extends AppCompatActivity
         if (checkPermissions()) {
             getLastLocation();
         }
+    }
+
+    @Override
+    public void onListingCreationAttempt(Listing listing) {
+        mWasteNotViewModel.insert(listing);
+        Toast.makeText(getApplicationContext(), "Data successfully entered", Toast.LENGTH_SHORT).show();
     }
 
     public void setUserLocation(double latitude, double longitude){

@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,6 +44,11 @@ public class ListingFragment extends Fragment {
         final ListingListAdapter adapter = new ListingListAdapter(new ListingListAdapter.ListingDiff());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        mWasteNotViewModel = new ViewModelProvider(this).get(WasteNotViewModel.class);
+        mWasteNotViewModel.getListings().observe(getViewLifecycleOwner(), listings -> {
+            // update the cached copy of the listings in the adapter
+            adapter.submitList(listings);
+        });
         return view;
     }
 
@@ -50,9 +56,11 @@ public class ListingFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // TODO: filter listings results by selected distance
+/*        // TODO: filter listings results by selected distance
         MainActivity mActivity = (MainActivity) getActivity();
         mWasteNotViewModel = mActivity.getmWasteNotViewModel();
+
+
 
         searchDistance = mActivity.getSearchDistance();
 
@@ -69,7 +77,7 @@ public class ListingFragment extends Fragment {
         double distance = getDistanceBetweenPoints(usersLatLng,listingLatLng);
 
         // TODO: If distance is within range (searchDistance) show it, NOTE distance is returned in meters not miles
-        int test = Integer.parseInt(searchDistance);
+        //int test = Integer.parseInt(searchDistance);*/
     }
 
     public LatLng getLocationFromAddress(Context context, String strAddress) {
