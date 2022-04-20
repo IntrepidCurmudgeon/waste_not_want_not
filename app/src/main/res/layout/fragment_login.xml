@@ -56,6 +56,7 @@
             android:id="@+id/txtPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="textPassword"
             android:layout_weight="1"
             android:minHeight="48dp"
             tools:ignore="SpeakableTextPresentCheck" />
