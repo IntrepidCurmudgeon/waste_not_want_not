@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity
     public static double userLongitude;
     public static String searchDistance;
 
+    private boolean loggedIn = false; // Tracks if user is logged in
+
     public static final int NEW_LISTING_ACTIVITY_REQUEST_CODE = 1;
 
     @Override
@@ -100,6 +102,7 @@ public class MainActivity extends AppCompatActivity
                     editor.putInt(getString(R.string.userId), userId);
                     editor.apply();
                     // Go to CreateListing
+                    loggedIn = true;
                     CreateListing fragment = new CreateListing();
                     String tag = CreateListing.class.getCanonicalName();
                     getSupportFragmentManager().beginTransaction().replace(
@@ -119,10 +122,18 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onStartSignIn() {
-        LoginFragment fragment = new LoginFragment();
-        String tag = LoginFragment.class.getCanonicalName();
-        getSupportFragmentManager().beginTransaction().replace(
-                R.id.frameLayoutFragment, fragment, tag).commit();
+        if (loggedIn) {
+            CreateListing createListing = new CreateListing();
+            String listingTag = CreateListing.class.getCanonicalName();
+            getSupportFragmentManager().beginTransaction().replace(
+                    R.id.frameLayoutFragment, createListing, listingTag).commit();
+        }
+        else {
+            LoginFragment fragment = new LoginFragment();
+            String tag = LoginFragment.class.getCanonicalName();
+            getSupportFragmentManager().beginTransaction().replace(
+                    R.id.frameLayoutFragment, fragment, tag).commit();
+        }
     }
 
     @Override
@@ -299,10 +310,21 @@ public class MainActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.homeMenu:
-                Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
+                HomeFragment homeFragment = new HomeFragment();
+                String homeTag = HomeFragment.class.getCanonicalName();
+                getSupportFragmentManager().beginTransaction().replace(
+                        R.id.frameLayoutFragment, homeFragment, homeTag).commit();
                 break;
             case R.id.logOutMenu:
-                Toast.makeText(this, "Log out", Toast.LENGTH_SHORT).show();
+                if (loggedIn) {
+                    loggedIn = false;
+                    LoginFragment loginFragment = new LoginFragment();
+                    String loginTag = LoginFragment.class.getCanonicalName();
+                    getSupportFragmentManager().beginTransaction().replace(
+                            R.id.frameLayoutFragment, loginFragment, loginTag).commit();
+                }
+                else
+                    Toast.makeText(this, "You are not logged in", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.exitMenu:
                 Toast.makeText(this, "Goodbye!", Toast.LENGTH_SHORT).show();
