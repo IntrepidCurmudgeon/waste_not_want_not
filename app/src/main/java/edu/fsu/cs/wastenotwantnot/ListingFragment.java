@@ -30,6 +30,7 @@ public class ListingFragment extends Fragment {
     private LiveData<List<Listing>> mListings;
     double userLatitude;
     double userLongitude;
+    String searchDistance;
     private WasteNotViewModel mWasteNotViewModel;
     @Nullable
     @Override
@@ -52,6 +53,9 @@ public class ListingFragment extends Fragment {
         // TODO: filter listings results by selected distance
         MainActivity mActivity = (MainActivity) getActivity();
         mWasteNotViewModel = mActivity.getmWasteNotViewModel();
+
+        searchDistance = mActivity.getSearchDistance();
+
         userLatitude = mActivity.getUsersLatitude();
         userLongitude = mActivity.getUsersLongitude();
         LatLng usersLatLng = new LatLng(userLatitude,userLongitude);
@@ -64,8 +68,8 @@ public class ListingFragment extends Fragment {
 
         double distance = getDistanceBetweenPoints(usersLatLng,listingLatLng);
 
-        // TODO: If distance is within range show it, NOTE distance is returned in meters not miles
-
+        // TODO: If distance is within range (searchDistance) show it, NOTE distance is returned in meters not miles
+        int test = Integer.parseInt(searchDistance);
     }
 
     public LatLng getLocationFromAddress(Context context, String strAddress) {

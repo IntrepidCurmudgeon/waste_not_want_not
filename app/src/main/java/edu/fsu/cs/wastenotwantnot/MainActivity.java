@@ -19,6 +19,8 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity
     int PERMISSION_ID = 44;
     public static double userLatitude;
     public static double userLongitude;
+    public static String searchDistance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         mWasteNotViewModel = new ViewModelProvider(this).get(WasteNotViewModel.class);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
         HomeFragment fragment = new HomeFragment();
         String tag = HomeFragment.class.getCanonicalName();
         getSupportFragmentManager().beginTransaction().replace(
@@ -268,5 +272,13 @@ public class MainActivity extends AppCompatActivity
 
     public WasteNotViewModel getmWasteNotViewModel(){
         return mWasteNotViewModel;
+    }
+
+    public String getSearchDistance(){
+        return searchDistance;
+    }
+
+    public void setSearchDistance(String sDistance){
+        searchDistance = sDistance;
     }
 }

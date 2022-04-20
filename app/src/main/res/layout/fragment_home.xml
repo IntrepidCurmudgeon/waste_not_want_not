@@ -54,6 +54,16 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/buttonSearch"
             app:layout_constraintStart_toStartOf="@+id/buttonSearch" />
+
+        <Spinner
+            android:id="@+id/searchDistance"
+            android:layout_width="409dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/buttonSearch"
+            app:layout_constraintEnd_toEndOf="@+id/buttonSearch"
+            app:layout_constraintStart_toStartOf="@+id/buttonSearch"
+            tools:layout_editor_absoluteX="1dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

@@ -8,7 +8,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 /**
@@ -66,6 +69,30 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         Button mButtonSearch = view.findViewById(R.id.buttonSearch);
+
+        //populate distance spinner
+        Spinner spnDistances = (Spinner) view.findViewById(R.id.searchDistance);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
+                R.array.searchDistances, android.R.layout.select_dialog_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnDistances.setAdapter(adapter);
+
+        spnDistances.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                String distance = spnDistances.getSelectedItem().toString();
+                MainActivity mActivity = (MainActivity) getActivity();
+                mActivity.setSearchDistance(distance);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+
+
         mButtonSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
