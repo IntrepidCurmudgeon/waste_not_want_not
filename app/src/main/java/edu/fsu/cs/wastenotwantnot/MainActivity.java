@@ -17,6 +17,8 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity
         RegisterFragment.OnRegisterFragmentInteractionListener {
 
     public static final String EXTRA_REPLY = "com.example.android.wordlistsql.REPLY";
-    private WasteNotViewModel mWasteNotViewModel;
+    public static WasteNotViewModel mWasteNotViewModel;
     FusedLocationProviderClient mFusedLocationClient;
     int PERMISSION_ID = 44;
     public static double userLatitude;
@@ -209,11 +211,6 @@ public class MainActivity extends AppCompatActivity
     // method to check for permissions
     private boolean checkPermissions() {
         return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
-
-        // If we want background location
-        // on Android 10.0 and higher,
-        // use:
-        // ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED
     }
 
     // method to request for permissions
@@ -260,5 +257,16 @@ public class MainActivity extends AppCompatActivity
     }
     public double getUsersLongitude(){
         return userLongitude;
+    }
+
+    //inflate options
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    public WasteNotViewModel getmWasteNotViewModel(){
+        return mWasteNotViewModel;
     }
 }
