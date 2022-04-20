@@ -11,6 +11,8 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class ListingFragment extends Fragment {
 
@@ -21,6 +23,10 @@ public class ListingFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_listing, container, false);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
+        final ListingListAdapter adapter = new ListingListAdapter(new ListingListAdapter.ListingDiff());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         return view;
     }
 }

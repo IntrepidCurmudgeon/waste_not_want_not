@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity
 
         // Initializing LocationRequest
         // object with appropriate methods
-        LocationRequest mLocationRequest = new LocationRequest();
+        LocationRequest mLocationRequest = new LocationRequest(); //TODO: LocationRequest() is deprecated
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         mLocationRequest.setInterval(5);
         mLocationRequest.setFastestInterval(0);

@@ -27,7 +27,7 @@ public class Listing {
     }
 
     @NonNull
-    @ColumnInfo(name = "user_id")
+    @ColumnInfo(name = "user_id", index = true)
     private int userId;
 
     @NonNull
@@ -57,6 +57,10 @@ public class Listing {
         return this.listingTitle;
     }
 
+    public int getUserId () {
+        return this.userId;
+    }
+
     // TODO: setters
 
     public void setListingDescription (String listingDescription) {
@@ -69,6 +73,10 @@ public class Listing {
 
     public void setListingTitle (String listingTitle) {
         this.listingTitle = listingTitle;
+    }
+
+    public void setUserId (int id) {
+        this.userId = id;
     }
 }
 
