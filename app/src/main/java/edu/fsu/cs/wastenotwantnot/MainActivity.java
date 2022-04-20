@@ -21,6 +21,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -152,6 +153,7 @@ public class MainActivity extends AppCompatActivity
             }
         }).start();
     }
+
     @Override
     public void onStartListingSearch() {
 
@@ -290,6 +292,23 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.homeMenu:
+                Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.logOutMenu:
+                Toast.makeText(this, "Log out", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.exitMenu:
+                Toast.makeText(this, "Goodbye!", Toast.LENGTH_SHORT).show();
+                finish();
+                break;
+        }
         return true;
     }
 
