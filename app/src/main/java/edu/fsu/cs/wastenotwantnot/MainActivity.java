@@ -298,7 +298,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public String getSearchDistance(){
-        if (searchDistance == ""){
+        if (isNullEmpty(searchDistance)){
             return "15";
         }else{
             return searchDistance;
@@ -307,5 +307,23 @@ public class MainActivity extends AppCompatActivity
 
     public void setSearchDistance(String sDistance){
         searchDistance = sDistance;
+    }
+
+    // method check if string is null or empty
+    public static boolean isNullEmpty(String str) {
+
+        // check if string is null
+        if (str == null) {
+            return true;
+        }
+
+        // check if string is empty
+        else if(str.isEmpty()){
+            return true;
+        }
+
+        else {
+            return false;
+        }
     }
 }
