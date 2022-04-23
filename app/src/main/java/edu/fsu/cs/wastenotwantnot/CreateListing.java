@@ -1,6 +1,5 @@
 package edu.fsu.cs.wastenotwantnot;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -61,8 +60,10 @@ public class CreateListing extends Fragment {
                 listing.setListingAddress(address.getText().toString().trim());
                 listing.setListingDescription(description.getText().toString().trim());
                 listing.setUserId(userId);
+                title.setText("");
+                address.setText("");
+                description.setText("");
                 mListener.onListingCreationAttempt(listing);
-//                Toast.makeText(getActivity(), "Data successfully entered", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -83,7 +84,7 @@ public class CreateListing extends Fragment {
         if (context instanceof RegisterFragment.OnRegisterFragmentInteractionListener) {
             mListener = (OnCreateListingFragmentInteractionListener) context;
         } else {
-            throw new RuntimeException(context.toString()
+            throw new RuntimeException(context
                     + " must implement OnCreateListingFragmentInteractionListener");
         }
     }

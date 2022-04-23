@@ -3,7 +3,6 @@ package edu.fsu.cs.wastenotwantnot;
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
-import androidx.room.RoomDatabase;
 
 import java.util.List;
 

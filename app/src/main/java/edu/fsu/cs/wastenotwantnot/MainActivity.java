@@ -4,8 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -22,8 +20,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -34,7 +30,6 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
-import io.reactivex.rxjava3.core.Single;
 
 public class MainActivity extends AppCompatActivity
         implements LoginFragment.OnFragmentInteractionListener,
@@ -42,7 +37,6 @@ public class MainActivity extends AppCompatActivity
         RegisterFragment.OnRegisterFragmentInteractionListener,
         CreateListing.OnCreateListingFragmentInteractionListener {
 
-    public static final String EXTRA_REPLY = "com.example.android.wordlistsql.REPLY";
     public static WasteNotViewModel mWasteNotViewModel; //TODO: confirm that this should be public
     FusedLocationProviderClient mFusedLocationClient;
     int PERMISSION_ID = 44;
@@ -52,22 +46,10 @@ public class MainActivity extends AppCompatActivity
 
     private boolean loggedIn = false; // Tracks if user is logged in
 
-    public static final int NEW_LISTING_ACTIVITY_REQUEST_CODE = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-/*        RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        final ListingListAdapter adapter = new ListingListAdapter(new ListingListAdapter.ListingDiff());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mWasteNotViewModel = new ViewModelProvider(this).get(WasteNotViewModel.class);
-        mWasteNotViewModel.getListings().observe(this, listings -> {
-            // update the cached copy of the words in the adapter
-            adapter.submitList(listings);
-        });*/
 
         mWasteNotViewModel = new ViewModelProvider(this).get(WasteNotViewModel.class);
 
@@ -106,7 +88,7 @@ public class MainActivity extends AppCompatActivity
                     CreateListing fragment = new CreateListing();
                     String tag = CreateListing.class.getCanonicalName();
                     getSupportFragmentManager().beginTransaction().replace(
-                            R.id.frameLayoutFragment, fragment, tag).commit();
+                            R.id.frameLayoutFragment, fragment, tag).addToBackStack(null).commit();
                 }
             }
         }).start();
@@ -117,7 +99,7 @@ public class MainActivity extends AppCompatActivity
         RegisterFragment registerFragment = new RegisterFragment();
         String registerFragmentTag = RegisterFragment.class.getCanonicalName();
         getSupportFragmentManager().beginTransaction().replace(
-                R.id.frameLayoutFragment, registerFragment, registerFragmentTag).commit();
+                R.id.frameLayoutFragment, registerFragment, registerFragmentTag).addToBackStack(null).commit();
     }
 
     @Override
@@ -155,11 +137,20 @@ public class MainActivity extends AppCompatActivity
                     // Insert user information to the database
                     mWasteNotViewModel.insert(user);
 
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(), "Success! Please log in.", Toast.LENGTH_LONG).show();
+                        }
+                    });
+
                     // Go back to LoginFragment
                     LoginFragment fragment = new LoginFragment();
                     String tag = LoginFragment.class.getCanonicalName();
-                    getSupportFragmentManager().beginTransaction().replace(
-                            R.id.frameLayoutFragment, fragment, tag).commit();
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.frameLayoutFragment, fragment, tag)
+                            .commit();
                 }
             }
         }).start();
@@ -172,8 +163,11 @@ public class MainActivity extends AppCompatActivity
 
         ListingFragment fragment = new ListingFragment();
         String tag = ListingFragment.class.getCanonicalName();
-        getSupportFragmentManager().beginTransaction().replace(
-                R.id.frameLayoutFragment, fragment, tag).commit();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frameLayoutFragment, fragment, tag)
+                .addToBackStack(null)
+                .commit();
     }
 
     @SuppressLint("MissingPermission")
@@ -196,10 +190,6 @@ public class MainActivity extends AppCompatActivity
                             requestNewLocationData();
                         } else {
                             setUserLocation(location.getLatitude(),location.getLongitude());
-                            //double usersLatitude = location.getLatitude();
-                            //double longitude = location.getLongitude();
-                            //latitudeTextView.setText(location.getLatitude() + "");
-                            //longitTextView.setText(location.getLongitude() + "");
                         }
                     }
                 });
@@ -237,8 +227,6 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onLocationResult(LocationResult locationResult) {
             Location mLastLocation = locationResult.getLastLocation();
-            //latitudeTextView.setText("Latitude: " + mLastLocation.getLatitude() + "");
-            //longitTextView.setText("Longitude: " + mLastLocation.getLongitude() + "");
         }
     };
 

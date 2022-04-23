@@ -8,25 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
-
-import org.w3c.dom.Text;
 
 public class LoginFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-
-    public static LoginFragment getInstance(String username){
-        //Bundle bundle = new Bundle();
-        // TODO: username - I think this needs to be putString (not putInt)
-        //bundle.putInt("USERNAME", username);
-        // TODO: password
-        LoginFragment fragment = new LoginFragment();
-        //fragment.setArguments(bundle);
-        return fragment;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState){
@@ -43,9 +30,6 @@ public class LoginFragment extends Fragment {
                 mListener.onStartLogin(userName, pwd);
             }
         });
-        // TODO: type of name needs to match "USERNAME" key in bundle.putString()
-        //String name = getArguments().getInt("USERNAME");
-        //username.setText(username);
         Button registerButton = view.findViewById(R.id.btnSignup);
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +46,7 @@ public class LoginFragment extends Fragment {
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
-            throw new RuntimeException(context.toString()
+            throw new RuntimeException(context
                     + " must implement OnFragmentInteractionListener");
         }
     }

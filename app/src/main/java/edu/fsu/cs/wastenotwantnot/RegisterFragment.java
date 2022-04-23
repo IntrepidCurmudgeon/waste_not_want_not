@@ -1,12 +1,9 @@
 package edu.fsu.cs.wastenotwantnot;
 
-import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.room.Room;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -142,7 +139,7 @@ public class RegisterFragment extends Fragment {
         if (context instanceof OnRegisterFragmentInteractionListener) {
             mListener = (OnRegisterFragmentInteractionListener) context;
         } else {
-            throw new RuntimeException(context.toString()
+            throw new RuntimeException(context
                     + " must implement OnRegisterFragmentInteractionListener");
         }
     }

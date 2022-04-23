@@ -8,7 +8,6 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import io.reactivex.rxjava3.core.Single;
 
 public class WasteNotViewModel extends AndroidViewModel {
 

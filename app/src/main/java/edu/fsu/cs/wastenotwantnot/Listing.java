@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
-import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "listing",
@@ -44,7 +43,6 @@ public class Listing {
     // can't just have password in plaintext in local database with a public setter/getter
     //
 
-    // TODO: getters
     public String getListingDescription () {
         return this.listingDescription;
     }
@@ -60,8 +58,6 @@ public class Listing {
     public int getUserId () {
         return this.userId;
     }
-
-    // TODO: setters
 
     public void setListingDescription (String listingDescription) {
         this.listingDescription = listingDescription;
@@ -80,5 +76,3 @@ public class Listing {
     }
 }
 
-
-//for listing database table
